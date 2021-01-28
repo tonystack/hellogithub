@@ -1,0 +1,531 @@
+-- public."Collateral" definition
+
+-- Drop table
+
+-- DROP TABLE public."Collateral";
+
+CREATE TABLE public."Collateral" (
+	coll_code varchar(15) NULL,
+	"type" varchar(15) NULL,
+	description varchar(1000) NULL,
+	asset_pricing money NULL DEFAULT 0,
+	document_links varchar(1000) NULL,
+	contract_id varchar(15) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL,
+	customer_code varchar(15) NULL,
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	"owner" bool NULL,
+	ownership varchar(100) NULL,
+	name_of_owner varchar(100) NULL,
+	identity_card_id_owner varchar(15) NULL,
+	date_of_issue date NULL,
+	issued_by varchar(50) NULL,
+	permanent_address varchar(200) NULL,
+	collateral_city int4 NULL,
+	valuation_date date NULL,
+	maximum_value money NULL DEFAULT 0,
+	currency_type varchar(15) NULL,
+	guarantee_value money NULL DEFAULT 0,
+	expected_valuation_date varchar(50) NULL,
+	secured_transaction bool NOT NULL,
+	enter_the_vault bool NULL,
+	collateral_distric int4 NULL DEFAULT 0,
+	company_guarantee_value money NULL,
+	value_from_date date NULL,
+	value_to_date date NULL,
+	customer_id int4 NOT NULL
+);
+
+
+-- public."Comment_Post" definition
+
+-- Drop table
+
+-- DROP TABLE public."Comment_Post";
+
+CREATE TABLE public."Comment_Post" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	loan_id int4 NOT NULL,
+	user_name varchar(15) NULL,
+	loan_code varchar(15) NULL,
+	content_type varchar(10) NULL,
+	content_details varchar(1000) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Contract" definition
+
+-- Drop table
+
+-- DROP TABLE public."Contract";
+
+CREATE TABLE public."Contract" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	contract_code varchar(15) NULL,
+	loan_code varchar(15) NULL,
+	contract_type varchar(10) NULL,
+	description varchar(1000) NULL,
+	signed_date date NULL,
+	contract_expiry_date date NULL,
+	payment_amount money NULL,
+	status varchar(50) NULL,
+	document_links varchar(1000) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Credit_Score" definition
+
+-- Drop table
+
+-- DROP TABLE public."Credit_Score";
+
+CREATE TABLE public."Credit_Score" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	cic_score int4 NULL,
+	cic_checked_date date NULL,
+	evnfc_score int4 NULL,
+	evnfc_checked_date date NULL,
+	is_blacklist bit(1) NULL,
+	is_de bit(1) NULL,
+	description varchar(1000) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL,
+	customer_code varchar(15) NULL
+);
+
+
+-- public."Customer" definition
+
+-- Drop table
+
+-- DROP TABLE public."Customer";
+
+CREATE TABLE public."Customer" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	customer_code varchar(15) NULL,
+	name varchar(100) NULL,
+	gender varchar(10) NULL,
+	dob date NULL,
+	identity_card_id varchar(20) NULL,
+	date_of_issue date NULL,
+	issued_by varchar(50) NULL,
+	passport varchar(15) NULL,
+	expiration_date date NULL,
+	contact_address varchar(200) NULL,
+	contact_phone varchar(15) NULL,
+	contact_email varchar(100) NULL,
+	permanent_address varchar(200) NULL,
+	installation_address varchar(200) NULL,
+	marital_status varchar(15) NULL,
+	company_id int4 NULL,
+	"position" varchar(100) NULL,
+	department varchar(100) NULL,
+	seniority int4 NULL DEFAULT 0,
+	income money NULL DEFAULT 0,
+	pay_forms varchar(50) NULL,
+	other_income money NULL DEFAULT 0,
+	other_income_desc varchar(100) NULL DEFAULT 0,
+	document_links varchar(1000) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL,
+	tin varchar(15) NULL,
+	customer_type varchar(15) NULL,
+	legal_representative varchar(100) NULL,
+	license_date date NULL,
+	type_of_employment_contract varchar(15) NULL,
+	mnemonic_name varchar(100) NULL,
+	permanent_city int4 NULL,
+	permanent_district int4 NULL,
+	company_name varchar(200) NULL,
+	bank_name varchar(200) NULL,
+	bank_account_name varchar(100) NULL,
+	bank_account_number varchar(50) NULL
+);
+
+
+-- public."Customer_Financial" definition
+
+-- Drop table
+
+-- DROP TABLE public."Customer_Financial";
+
+CREATE TABLE public."Customer_Financial" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	"type" varchar(20) NULL,
+	workplace varchar(100) NULL,
+	labor_contract varchar NULL,
+	total_income money NOT NULL DEFAULT 0,
+	report_type varchar(10) NULL,
+	value_company money NOT NULL DEFAULT 0,
+	total_short_term_liabilities money NOT NULL DEFAULT 0,
+	total_long_term_liabilities money NOT NULL DEFAULT 0,
+	equity_of_the_owner money NOT NULL DEFAULT 0,
+	charter_capital money NOT NULL DEFAULT 0
+);
+
+
+-- public."DataConfig" definition
+
+-- Drop table
+
+-- DROP TABLE public."DataConfig";
+
+CREATE TABLE public."DataConfig" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	"type" varchar(15) NOT NULL,
+	name varchar(100) NOT NULL,
+	parentid int4 NULL,
+	description1 varchar(500) NULL,
+	description2 varchar(500) NULL
+);
+
+
+-- public."Document_Template" definition
+
+-- Drop table
+
+-- DROP TABLE public."Document_Template";
+
+CREATE TABLE public."Document_Template" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	template_code varchar(15) NULL,
+	description varchar(200) NULL,
+	document_links varchar(1000) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Func" definition
+
+-- Drop table
+
+-- DROP TABLE public."Func";
+
+CREATE TABLE public."Func" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	func_name varchar(50) NOT NULL,
+	description varchar(200) NOT NULL,
+	func_controller varchar(50) NOT NULL,
+	func_action varchar(50) NOT NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Loan" definition
+
+-- Drop table
+
+-- DROP TABLE public."Loan";
+
+CREATE TABLE public."Loan" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	loan_code varchar(15) NULL,
+	customer_code varchar(15) NULL,
+	package_code varchar(15) NULL,
+	provider_code varchar(255) NULL,
+	register_amount money NULL DEFAULT 0,
+	loan_amount money NULL DEFAULT 0,
+	received_amount money NULL,
+	interest_rate int4 NULL DEFAULT 0,
+	register_date timestamp(0) NULL,
+	verified_date date NULL,
+	approved_date date NULL,
+	disbursement_date date NULL,
+	loan_term int4 NULL DEFAULT 0,
+	from_date date NULL,
+	to_date date NULL,
+	verified_staff varchar(100) NULL,
+	approved_staff varchar(100) NULL,
+	status varchar(50) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL,
+	tenor int4 NULL DEFAULT 0,
+	withdrawal_method varchar(200) NULL,
+	late_payment_interest int4 NULL DEFAULT 0,
+	overdue_interest int4 NULL DEFAULT 0,
+	interest_rate_adjustment int4 NULL DEFAULT 0,
+	repayments int4 NULL DEFAULT 0,
+	repayment_of_interest int4 NULL DEFAULT 0,
+	customer_id int4 NOT NULL DEFAULT 0
+);
+
+
+-- public."Loan_Offer" definition
+
+-- Drop table
+
+-- DROP TABLE public."Loan_Offer";
+
+CREATE TABLE public."Loan_Offer" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	transction_code varchar(100) NULL,
+	loan_code varchar(15) NULL,
+	payment_term_date date NULL,
+	payment_date date NULL,
+	payment_amount money NULL,
+	payment_amount_remain money NULL,
+	status varchar(50) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Loan_Package" definition
+
+-- Drop table
+
+-- DROP TABLE public."Loan_Package";
+
+CREATE TABLE public."Loan_Package" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	package_code varchar(15) NULL,
+	package_name varchar(100) NULL,
+	interest_rate int4 NULL,
+	loan_min_time int4 NULL,
+	loan_max_time int4 NULL,
+	description varchar(1000) NULL,
+	product_code varchar(15) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL,
+	status varchar(20) NULL
+);
+
+
+-- public."Loan_Payment_Schedule" definition
+
+-- Drop table
+
+-- DROP TABLE public."Loan_Payment_Schedule";
+
+CREATE TABLE public."Loan_Payment_Schedule" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	transction_code varchar(100) NULL,
+	loan_code varchar(15) NULL,
+	payment_term_date date NULL,
+	payment_date date NULL,
+	payment_amount money NULL,
+	payment_amount_remain money NULL,
+	status varchar(50) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Log_Process" definition
+
+-- Drop table
+
+-- DROP TABLE public."Log_Process";
+
+CREATE TABLE public."Log_Process" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	log_type varchar(15) NULL,
+	loan_id int4 NULL,
+	process_type varchar(50) NULL,
+	process_by varchar(100) NULL,
+	process_date date NULL,
+	description varchar(500) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Other_Documents" definition
+
+-- Drop table
+
+-- DROP TABLE public."Other_Documents";
+
+CREATE TABLE public."Other_Documents" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	provider_code varchar(15) NOT NULL,
+	loan_code varchar(15) NOT NULL,
+	document_type varchar(25) NULL,
+	document_links text NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Part_Follow" definition
+
+-- Drop table
+
+-- DROP TABLE public."Part_Follow";
+
+CREATE TABLE public."Part_Follow" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	work_follow_id int4 NULL,
+	work_part_id int4 NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Relative_Person" definition
+
+-- Drop table
+
+-- DROP TABLE public."Relative_Person";
+
+CREATE TABLE public."Relative_Person" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	name varchar(100) NULL,
+	relationship varchar(15) NULL,
+	address varchar(200) NULL,
+	phone varchar(15) NULL,
+	email varchar(100) NULL,
+	permanent_city int4 NULL,
+	permanent_district int4 NULL,
+	dob date NULL,
+	gender varchar(10) NULL,
+	identity_card_id varchar(20) NULL,
+	date_of_issue date NULL,
+	issued_by varchar(50) NULL,
+	type_of_employment_contract varchar(20) NULL,
+	company_name varchar(200) NULL,
+	income money NULL,
+	customer_id int4 NULL,
+	created_on timestamp(0) NULL
+);
+
+
+-- public."Role" definition
+
+-- Drop table
+
+-- DROP TABLE public."Role";
+
+CREATE TABLE public."Role" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	role_name varchar(50) NULL,
+	description varchar(500) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Role_Func" definition
+
+-- Drop table
+
+-- DROP TABLE public."Role_Func";
+
+CREATE TABLE public."Role_Func" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	role_id int4 NOT NULL,
+	func_id int4 NOT NULL,
+	isview bool NOT NULL DEFAULT false,
+	isedit bool NOT NULL DEFAULT false,
+	isremove bool NOT NULL DEFAULT false,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Role_Permision" definition
+
+-- Drop table
+
+-- DROP TABLE public."Role_Permision";
+
+CREATE TABLE public."Role_Permision" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	role_id int4 NOT NULL,
+	func_id int4 NOT NULL,
+	isview bool NOT NULL DEFAULT false,
+	isedit bool NOT NULL DEFAULT false,
+	isremove bool NOT NULL DEFAULT false,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."User" definition
+
+-- Drop table
+
+-- DROP TABLE public."User";
+
+CREATE TABLE public."User" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	user_name varchar(50) NULL,
+	"password" varchar(50) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL,
+	full_name varchar(50) NULL,
+	department varchar(50) NULL,
+	phone varchar(50) NULL,
+	email varchar(50) NULL,
+	status varchar(20) NULL,
+	role_id int4 NULL
+);
+
+
+-- public."User_Role" definition
+
+-- Drop table
+
+-- DROP TABLE public."User_Role";
+
+CREATE TABLE public."User_Role" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	user_id int4 NULL,
+	role_id int4 NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."WorkPlace" definition
+
+-- Drop table
+
+-- DROP TABLE public."WorkPlace";
+
+CREATE TABLE public."WorkPlace" (
+	company_id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	company_name varchar(100) NULL,
+	business_register_id varchar(15) NULL,
+	address varchar(200) NULL,
+	phone varchar(15) NULL,
+	email varchar(100) NULL
+);
+
+
+-- public."Work_Follow" definition
+
+-- Drop table
+
+-- DROP TABLE public."Work_Follow";
+
+CREATE TABLE public."Work_Follow" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	work_follow_code varchar(15) NULL,
+	name varchar(50) NULL,
+	description varchar(500) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
+
+
+-- public."Work_Part" definition
+
+-- Drop table
+
+-- DROP TABLE public."Work_Part";
+
+CREATE TABLE public."Work_Part" (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	work_part_code varchar(15) NULL,
+	description varchar(500) NULL,
+	created_on timestamp(0) NULL,
+	updated_on timestamp(0) NULL
+);
